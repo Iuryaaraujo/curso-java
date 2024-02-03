@@ -1,4 +1,4 @@
-package br.com.iuryaraujo.exerciciosspringboot.model;
+package br.com.iuryaraujo.exerciciosspringboot.model.entities;
 
 public class Cliente {
 

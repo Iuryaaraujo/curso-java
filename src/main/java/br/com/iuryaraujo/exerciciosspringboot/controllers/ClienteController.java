@@ -1,6 +1,6 @@
 package br.com.iuryaraujo.exerciciosspringboot.controllers;
 
-import br.com.iuryaraujo.exerciciosspringboot.model.Cliente;
+import br.com.iuryaraujo.exerciciosspringboot.model.entities.Cliente;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
