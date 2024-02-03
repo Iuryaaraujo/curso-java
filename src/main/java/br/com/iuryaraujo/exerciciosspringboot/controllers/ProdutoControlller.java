@@ -4,9 +4,9 @@ import br.com.iuryaraujo.exerciciosspringboot.model.entities.Produto;
 import br.com.iuryaraujo.exerciciosspringboot.model.repositories.ProdutoRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/produtos")
@@ -25,10 +25,35 @@ public class ProdutoControlller {
 // injetando automaticamente uma instancia produtoRepositori
     private ProdutoRepository produtoRepository;
 
-    @PostMapping
+    @RequestMapping(method = {RequestMethod.POST, RequestMethod.PUT})
     public Produto novoProduto(@Valid Produto produto) {
         produtoRepository.save(produto);
         return produto;
+    }
+
+//    @PostMapping
+//    public Produto novoProduto(@Valid Produto produto) {
+//        produtoRepository.save(produto);
+//        return produto;
+//    }
+
+    @GetMapping
+    public Iterable<Produto> obterTodosProdutos() {
+        return produtoRepository.findAll();
+    }
+
+    @GetMapping(path = "/{id}")
+    public Optional<Produto> obterPorId(@PathVariable int id) {
+        return produtoRepository.findById(id);
+    }
+//    @PutMapping
+//    public Produto alterarProduro(@Valid Produto produto){
+//        produtoRepository.save(produto);
+//        return produto;
+//    }
+    @DeleteMapping(path = "/{id}")
+    public void excluirProduto(@PathVariable int id){
+        produtoRepository.deleteById(id);
     }
 }
 
